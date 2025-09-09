@@ -1,0 +1,5 @@
+```
+Project 1: Linux Terminal Practice
+------------------------------
+This project involves practicing basic terminal commands.
+```
