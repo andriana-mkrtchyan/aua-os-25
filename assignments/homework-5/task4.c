@@ -3,12 +3,14 @@
 
 int main(){
 
-	char **arr = malloc(3 * sizeof(char*));
-	if(!arr){
+	char **arr = malloc(3 * sizeof(char*)); // as strings are pointers to char array, a string array
+						// should be a so-said pointer to pointers
+	if(!arr){ // handling allocation error
 		perror("Fail malloc.");
 		exit(EXIT_FAILURE);
 	};
 
+	// allocating memory for each string in the array
 	for(int i = 0; i < 3; i++){
 		*(arr + i) = malloc(50 * sizeof(char));
 		if(!*(arr + i)){
@@ -19,14 +21,16 @@ int main(){
 
 	printf("Enter 3 strings: ");
 	for(int i = 0; i < 3; i++){
-		scanf("%49s", *(arr + i));
+		scanf("%49s", *(arr + i)); // telling how many characters to read enhances memory management
+					   // reading 49 chars leaves the last place for '\0', indicateing the
+					   // end of string
 	}
 	printf("You entered: ");
 	for(int i = 0; i < 3; i++){
 		printf("%s ", *(arr + i));
 	}
 
-	char **temp = realloc(arr,5  * sizeof(char*));
+	char **temp = realloc(arr,5  * sizeof(char*)); // reallocating the array to caontain 5 strings in total
 	if(!temp){
 		perror("Fail realloc.");
 		exit(EXIT_FAILURE);
@@ -57,8 +61,11 @@ int main(){
 	for(int i = 0; i < 5; i++){
 		free(*(arr + i));
 	}
-	free(arr);
+
+	free(arr); // freeing the array to safely end the program
 	arr = NULL;
+	
 	return 0;
+
 
 }
