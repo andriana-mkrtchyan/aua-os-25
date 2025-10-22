@@ -31,4 +31,8 @@ Finally, see the program simulate the schedulers.
 *
 * 	If P1 ends at time=1 and P2 starts at time=2, the gap between the processes will be illustrated as |IDLE| 
 *
+* 	The program does not scale (reducing in size) paddings and chart size in case of very large burst times, e.g. 1000,
+* 	so please do not test such for having consistent and beautiful output :)
+*
+
 

@@ -221,6 +221,7 @@ void print_info(struct Process *processes, int nProc, char *algo_name){
 		if(processes[i].arrival_time > current_time){
             		int idle_time = processes[i].arrival_time - current_time;
 	        	int padding = idle_time/2; // adjust scale if needed
+
             		printf("%*sIDLE%*s|", padding, "", padding, "");
             		current_time += idle_time;
        		}
