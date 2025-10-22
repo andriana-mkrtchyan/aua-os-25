@@ -33,6 +33,6 @@ Finally, see the program simulate the schedulers.
 *
 * 	The program does not scale (reducing in size) paddings and chart size in case of very large burst times, e.g. 1000,
 * 	so please do not test such for having consistent and beautiful output :)
-*
+
 
 
