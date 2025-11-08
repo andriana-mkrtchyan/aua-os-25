@@ -1,0 +1,27 @@
+Report
+
+All of the codes are commented and generally contain the logical explanations.
+
+Task 4
+*I prepend the line in memory, then only write it to the file, thus being safe from partial writes ()
+e.g. PID logged but the line from user input not).
+
+* Before write, the current file position is 0, i.e. beginning of the file.
+After write, the current file position becomes the end of the file.
+This shows how the file offset grows inside the file.
+
+SEEK_CUR returns the current file offset, which normally increases as we read or write.
+O_APPEND ensures that all writes go to the end of the file. At the same time, after each write, the file offset is updated by the kernel. Therefore, lseek(fd, 0, SEEK_CUR) returns a growing offset value, reflecting the new end-of-file.
+
+
+Key takeaways from all the exercises:
+* read() and write() advance the file offset automatically
+* partial writes must be checked to ensure all bytes are copied
+* lseek() allows moving the offset backwards
+* opening the file with O_APPEND ensures that every write() goes to the end of the file regardless the current offset, lseek(fd, 0, SEEK_CUR) still returns the logical growing offset after write
+* lseek() can move the offset beyond the current file end to create holes, writing after such a seek
+  creates a sparse file
+* local size of sparse files is large, but disk usage is minimal
+* overwriting a line with longer content requires shifting subsequent bytes manually
+* write() cannot insert bytes, in only writes existing ones
+
